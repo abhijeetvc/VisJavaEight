@@ -1,6 +1,7 @@
-import java.util.function.BiFunction;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.*;
+import java.util.stream.Collectors;
 
 //interface Demo{
 //    Integer calculateLength(String str);
@@ -39,6 +40,37 @@ public class FunctionalInterfaces {//implements Demo {
         BinaryOperator<Integer> bo=(x,y)->x+y;
         Integer i4=bo.apply(45,60);
         System.out.println(i4);
+
+        //UnaryOperator Interface
+        UnaryOperator<Integer> f5=a->a+10;
+        Integer i5=f5.apply(20);
+        System.out.println(i5);
+
+        //Predicate Interface
+        List<Integer> list1= Arrays.asList(5,10,15,20,25,30);
+
+        //It takes an argument and return boolean
+        Predicate<Integer> p=x->x>10;
+        List<Integer> list2=list1.stream().filter(p)
+                .collect(Collectors.toList());
+        System.out.println(list2);
+
+        // BiPredicate Interface
+        //It takes two arguments and return boolean
+        BiPredicate<String,Integer> bip=(a,b)->{
+          return a.length()==b;
+        };
+        Boolean b=bip.test("Abhi",4);
+        System.out.println(b);
+
+        // Consumer Interface
+        // It takes an argument and return nothing
+        Consumer<Integer> c=a-> System.out.println(a);
+        c.accept(28);
+
+        // BiConsumer Interface
+        BiConsumer<Integer,Integer> c1=(a,a1)-> System.out.println(a+a1);
+        c1.accept(30,40);
 
     }
 
